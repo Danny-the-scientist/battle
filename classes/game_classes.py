@@ -1,4 +1,5 @@
 import random
+
 from .magic import Spell
 
 class bcolors:
@@ -11,26 +12,37 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-
 class Person:
-    def __init__(self, hp, mp, atk, df, magic):
+    def __init__(self, name, hp, mp, atk, phsdf, mgdef, magic, desc):
+        self.name = name
         self.maxhp = hp
         self.hp = hp
         self.maxmp = mp
         self.mp = mp
         self.atkl = atk - 10
         self.atkh = atk + 10
+        self.phsdf = phsdf
+        self.mgdef = mgdef
         self.magic = magic
+        self.desc = desc
         self.actions = ["Attack", "Magic"]
 
     def generate_attack_damage(self):
         return random.randrange(self.atkl, self.atkh)
 
     def take_damage(self, dmg):
+        if dmg < 0:
+            dmg = 0
         self.hp -= dmg
         if self.hp < 0:
             self.hp = 0
         return self.hp
+    
+    def physical_defense(self):
+        return random.randrange(self.phsdf-30 , self.phsdf)
+    
+    def magic_defense(self):
+        return random.randrange(self.mgdef-30, self.mgdef)
 
     def get_healing(self, heal):
         self.hp += heal
@@ -65,4 +77,11 @@ class Person:
         print(bcolors.BOLD + bcolors.OKGREEN + "Spells" + bcolors.ENDC)
         for Spell in self.magic:
             print(str(i) + ":", Spell.name, "(cost:", str(Spell.cost) + ")")
+            i += 1
+
+    def select_character(self):
+        i = 1
+        print(bcolors.BOLD + bcolors.OKBLUE + "Character Types:" + bcolors.ENDC)
+        for num in Spell():
+            print(str(i) + " -" , num)
             i += 1
