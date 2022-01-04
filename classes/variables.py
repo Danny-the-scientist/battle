@@ -1,4 +1,4 @@
-'''My attempt to generate global variables to use across the repo. Does not end well and currently unused'''
+
 import random
 from .characters import characterTypes
 from .magic import Spell

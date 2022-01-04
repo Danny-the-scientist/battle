@@ -27,6 +27,9 @@ class characterTypes:
     def physical_defense(self):
         return random.randrange(self.phsdf-30 , self.phsdf)
 
+    def magic_defense(self):
+        return random.randrange(self.mgdef-30, self.mgdef)
+
     def take_damage(self, dmg):
         self.hp -= dmg
         if self.hp < 0:
