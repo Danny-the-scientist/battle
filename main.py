@@ -17,7 +17,7 @@ i = 0
 print(bcolors.BOLD + bcolors.OKGREEN + "Welcome to the fight! Please input the size of your party (1-3):")#TODO establish dynamic Party number and loop through selections and actions
 
 partysize = range(int(input("Members:")))
-party = {}
+party = []
 '''
 
 '''Acquire user input'''
